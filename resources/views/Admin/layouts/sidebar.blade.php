@@ -6,12 +6,12 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="{{ Request::segment(2) == 'products' ? 'active' : null }}">
+                    {{-- <li class="{{ Request::segment(2) == 'products' ? 'active' : null }}">
                         <a class="nav-link" href="{{route('admin.products.index')}}">
                             <i class="nc-icon nc-bullet-list-67"></i>
                             <p>المنتجات</p>
                         </a>
-                    </li>
+                    </li> --}}
                     {{-- <li class="{{ Request::segment(2) == 'users' ? 'active' : null }}">
                         <a class="nav-link" href="{{route('admin.users.index')}}">
                             <i class="nc-icon nc-single-02"></i>
