@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\ProgramsController;
 use App\Http\Controllers\Api\VideosController;
+use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +43,7 @@ Route::group([], function ($router) {
     Route::resource('video', VideosController::class);
     Route::resource('adds', AddsController::class);
     Route::resource('news', NewsController::class);
+    Route::get('/category', function () {
+        return response()->json(NewsCategory::all(), 200);
+    });
 });
