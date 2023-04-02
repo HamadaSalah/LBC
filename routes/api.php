@@ -36,7 +36,7 @@ Route::group([
 });
 
 
-Route::group(['middleware' => 'api',], function ($router) {
+Route::group([], function ($router) {
 
     Route::resource('program', ProgramsController::class);
     Route::resource('video', VideosController::class);
