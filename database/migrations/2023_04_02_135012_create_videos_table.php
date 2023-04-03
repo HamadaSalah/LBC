@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained('programs')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->string('title');
             $table->string('img');
             $table->string('video');
             $table->timestamps();

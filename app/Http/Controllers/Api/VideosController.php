@@ -43,6 +43,7 @@ class VideosController extends Controller
         $request->validate([
             'program_id' => 'required|exists:programs,id',
             'img' => 'required',
+            'title' => 'required',
             'video' => 'required'
         ]);
         if ($request->hasFile('img')) {
@@ -61,6 +62,7 @@ class VideosController extends Controller
         }
         $prog = Video::create([
             'program_id' => $request->program_id,
+            'title' => $request->title,
             'img' => '/uploads/' . $imgname,
             'video' => '/uploads/' . $videoname
         ]);
