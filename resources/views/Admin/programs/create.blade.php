@@ -1,10 +1,10 @@
 @extends('Admin.master')
 @section('content')
-<h2 style="padding-bottom: 35px;float: left;">اضافة قسم جديد </h2>
+<h2 style="padding-bottom: 35px;float: left;">اضافة برنامج </h2>
 
 <div class="clearfix"></div>
 
-<form method="POST" action="{{route('admin.categories.store')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('admin.programs.store')}}" enctype="multipart/form-data">
     @csrf
     
   <div class="form-group">

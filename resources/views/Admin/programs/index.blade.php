@@ -1,8 +1,8 @@
 @extends('Admin.master')
 @section('content')
-<h2 style="padding-bottom: 35px;float: left;margin-top: 0">كل الاقسام</h2>
-<a href="{{route('admin.categories.create')}}">  
-    <button class="btn btn-primary" style="float: right"><i class="fa fa-plus"> </i> قسم جديد</button>
+<h2 style="padding-bottom: 35px;float: left;margin-top: 0">كل البرامج</h2>
+<a href="{{route('admin.programs.create')}}">  
+    <button class="btn btn-primary" style="float: right"><i class="fa fa-plus"> </i> برنامج جديد</button>
 </a>
 <div class="clearfix"></div>
 <div class="clear"></div>
@@ -17,12 +17,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($cats as $key =>  $cat)
+                @foreach ($cats as $key => $cat)
                 <tr>
-                    <td>{{$key+1}}</td>
+                    <td>{{$cat->$key+1}}</td>
                     <td>{{$cat->name}}</td>
                     <td>
-                        <form style="display: inline;" action="{{route('admin.categories.destroy', $cat->id)}}" method="post">
+                        <form style="display: inline;" action="{{route('admin.programs.destroy', $cat->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> حذف</button>

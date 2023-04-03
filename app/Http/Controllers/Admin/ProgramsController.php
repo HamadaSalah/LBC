@@ -15,7 +15,8 @@ class ProgramsController extends Controller
      */
     public function index()
     {
-        return response()->json(Program::all(), 200);
+        $cats = Program::all();
+        return view('Admin.Programs.index', compact('cats'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProgramsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Programs.create');
     }
 
     /**
@@ -36,11 +37,13 @@ class ProgramsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
-        $prog = Program::create([
+        $request->validate([
+            'name' => 'required'
+        ]);
+        Program::create([
             'name' => $request->name
         ]);
-        return response()->json($prog, 200);
+        return redirect()->route('admin.programs.index')->with('success', 'Created Successfully');
     }
 
     /**
@@ -75,14 +78,8 @@ class ProgramsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate(['name' => 'required']);
-        $prog = Program::findOrFail($id);
-
-        $prog->update([
-            'name' => $request->name
-        ]);
-        return response()->json($prog, 200);
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -91,9 +88,8 @@ class ProgramsController extends Controller
      */
     public function destroy($id)
     {
-        $prog = Program::findOrFail($id);
-        $prog->delete();
-
-        return response()->json(['message' => 'Program Deleted Successfully'], 200);
+        $cat = Program::findOrFail($id);
+        $cat->delete();
+        return redirect()->route('admin.programs.index')->with('success', 'Deleted Successfully');
     }
 }

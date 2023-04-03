@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PolicesController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\ProgramsController;
 use App\Http\Controllers\Admin\ReachUsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UsersController;
@@ -39,4 +40,5 @@ Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function
     Route::resource('adds', AddsController::class);
     Route::resource('news', NewsController::class);
     Route::resource('categories', CatsController::class);
+    Route::resource('programs', ProgramsController::class);
 });

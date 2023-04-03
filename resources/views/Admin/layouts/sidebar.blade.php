@@ -9,7 +9,13 @@
                     <li class="{{ Request::segment(2) == 'categories' ? 'active' : null }}">
                         <a class="nav-link" href="{{route('admin.categories.index')}}">
                             <i class="nc-icon nc-bullet-list-67"></i>
-                            <p>Categories</p>
+                            <p>الاقسام</p>
+                        </a>
+                    </li>
+                    <li class="{{ Request::segment(2) == 'programs' ? 'active' : null }}">
+                        <a class="nav-link" href="{{route('admin.programs.index')}}">
+                            <i class="nc-icon nc-bullet-list-67"></i>
+                            <p>البرامج</p>
                         </a>
                     </li>
                     {{-- <li class="{{ Request::segment(2) == 'users' ? 'active' : null }}">
