@@ -56,7 +56,7 @@ class NewsController extends Controller
         $prog = News::create([
             'head' => $request->head,
             'body' => $request->body,
-            'img' => $imgname,
+            'img' => '/uploads/' . $imgname,
             'news_category_id' => $request->news_category_id
         ]);
         return response()->json($prog, 200);
