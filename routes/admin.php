@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CalenderController;
+use App\Http\Controllers\Admin\CatsController;
 use App\Http\Controllers\Admin\ClassController;
 use App\Http\Controllers\Admin\EventGallController;
 use App\Http\Controllers\Admin\EventsController;
@@ -37,4 +38,5 @@ Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function
     Route::resource('video', VideosController::class);
     Route::resource('adds', AddsController::class);
     Route::resource('news', NewsController::class);
+    Route::resource('categories', CatsController::class);
 });
