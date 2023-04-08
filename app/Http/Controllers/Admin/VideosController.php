@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Program;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,10 +17,9 @@ class VideosController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->id) {
-            return response()->json(Video::with('program')->where('program_id', $request->id)->get(), 200);
-        }
-        return response()->json(Video::with('program')->get(), 200);
+        // $programs = Program::all();
+        $videos = Video::with('program')->latest()->get();
+        return view('Admin.Video.index', compact('videos'));
     }
 
     /**
@@ -29,7 +29,9 @@ class VideosController extends Controller
      */
     public function create()
     {
-        //
+        $programs = Program::all();
+
+        return view('Admin.Video.create', compact('programs'));
     }
 
     /**
@@ -64,7 +66,7 @@ class VideosController extends Controller
             'img' => '/uploads/' . $imgname,
             'video' => '/uploads/' . $videoname
         ]);
-        return response()->json($prog, 200);
+        return redirect()->route('admin.video.index')->with('success', 'تم الاضافة');
     }
 
     /**
@@ -118,6 +120,6 @@ class VideosController extends Controller
         $prog = Video::findOrFail($id);
         $prog->delete();
 
-        return response()->json(['message' => 'Video Deleted Successfully'], 200);
+        return redirect()->back()->with('success', 'تم الحذف');
     }
 }

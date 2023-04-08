@@ -22,11 +22,15 @@
                     <td>{{$key+1}}</td>
                     <td>{{$cat->name}}</td>
                     <td>
-                        <form style="display: inline;" action="{{route('admin.categories.destroy', $cat->id)}}" method="post">
+                        <a data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('admin.categories.destroy', $cat->id) }}" title="Delete Project">
+                            <i class="fas fa-trash text-danger  fa-lg"></i>
+                        </a>
+        
+                        {{-- <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> حذف</button> --}}
+                        {{-- <form style="display: inline;" action="{{route('admin.categories.destroy', $cat->id)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> حذف</button>
-                        </form>
+                        </form> --}}
                         {{-- <a href="{{Route('admin.cats.edit', $cat->id)}} ">
                             <button class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button>
                         </a> --}}
@@ -43,4 +47,33 @@
     @else
         <div class="text-center">No Data Available</div> 
     @endif
+    @if (isset($cat))
+    <!-- small modal -->
+        <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="smallBody">
+                        <div>
+                            <form action="{{ route('admin.categories.destroy', $cat->id) }}" method="post">
+                                <div class="modal-body">
+                                    @csrf
+                                    @method('DELETE')
+                                    <h5 class="text-center"> {{ $cat->name }} هل تريد حذف قسم ?</h5>
+                                </div>
+                                <button type="button" class="btn btn-secondary" style="width: 100%;margin-bottom: 20px" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger" style="width: 100%;margin-bottom: 20px" >Yes, Delete Project</button>
+                                <div class="modal-footer">
+                                </div>
+                            </form>
+                                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
 @endsection
