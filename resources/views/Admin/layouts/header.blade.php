@@ -22,11 +22,12 @@
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}" type="image/x-icon">
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('Dashboard/assets/css/demo.css')}}" rel="stylesheet" />
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" /> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    {{-- <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" /> --}}
     <link href="{{ asset('Dashboard/assets/css/mycss.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/3859c5f1d0.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    
     @stack('styles')
 
 </head>

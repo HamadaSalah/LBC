@@ -13,6 +13,7 @@
                 <tr>
                     <th class="border-top-0">#</th>
                     <th class="border-top-0">البرنامج</th>
+                    <th class="border-top-0">اسم الحلقة</th>
                     <th class="border-top-0">الصورة</th>
                     <th class="border-top-0">اجراء</th>
                 </tr>
@@ -24,6 +25,9 @@
                     <td style="">
                         {{$video->program->name}}
                     </td>
+                    <td style="">
+                        {{$video->title}}
+                    </td>
                     <td>
                         <a data-fancybox="gallery" href="{{asset($video->img)}}"> <img src="{{asset($video->img)}}" style="width: 50px;height: 50px;" class="img-thumbnail" alt=""></a>
                     </td>
@@ -33,10 +37,12 @@
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Delete</button>
                         </form> --}}
-                        <a data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('admin.video.destroy', $video->id) }}" title="Delete Project">
+                        <a   style="cursor: pointer;" data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('admin.video.destroy', $video->id) }}" title="Delete Project">
                             <i class="fas fa-trash text-danger  fa-lg"></i>
                         </a>
-
+                        <a  style="margin-left: 20px;cursor: pointer;" href="{{route('admin.video.edit', $video->id)}}">
+                            <i class="fas fa-edit text-danger  fa-lg"></i>
+                        </a>
                     </td>
 
                 </tr>

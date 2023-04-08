@@ -44,6 +44,7 @@ class VideosController extends Controller
     {
         $request->validate([
             'program_id' => 'required|exists:programs,id',
+            'title' => 'required',
             'img' => 'required',
             'video' => 'required'
         ]);
@@ -63,6 +64,7 @@ class VideosController extends Controller
         }
         $prog = Video::create([
             'program_id' => $request->program_id,
+            'title' => $request->title,
             'img' => '/uploads/' . $imgname,
             'video' => '/uploads/' . $videoname
         ]);
@@ -88,7 +90,9 @@ class VideosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $programs = Program::all();
+        $video = Video::findOrFail($id);
+        return view('Admin.Video.edit', compact('programs', 'video'));
     }
 
     /**
@@ -100,14 +104,37 @@ class VideosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // $request->validate(['name' => 'required']);
-        // $prog = Program::findOrFail($id);
+        $request->validate([
+            'program_id' => 'required|exists:programs,id',
+            'title' => 'required',
+            // 'img' => 'required',
+            // 'video' => 'required'
+        ]);
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $ext = $file->getClientOriginalExtension();
+            $filename = 'imgs' . '_' . time() . '.' . $ext;
+            $storagePath = Storage::disk('public_uploads')->put('/uploads/', $file);
+            $imgname = basename($storagePath);
+            $myimg = '/uploads/' . $imgname;
+        }
+        if ($request->hasFile('video')) {
+            $file = $request->file('video');
+            $ext = $file->getClientOriginalExtension();
+            $filename = 'imgs' . '_' . time() . '.' . $ext;
+            $storagePath = Storage::disk('public_uploads')->put('/uploads/', $file);
+            $videoname = basename($storagePath);
+            $myvid = '/uploads/' . $videoname;
+        }
 
-        // $prog->update([
-        //     'name' => $request->name
-        // ]);
-        // return response()->json($prog, 200);
+        $video = Video::findOrFail($id);
+        $video->update([
+            'program_id' => $request->program_id,
+            'title' => $request->title,
+            'img' => $myimg ?? $video->img,
+            'video' => $myvid ??  $video->video
+        ]);
+        return redirect()->route('admin.video.index')->with('success', 'تم التعديل');
     }
     /**
      * Remove the specified resource from storage.

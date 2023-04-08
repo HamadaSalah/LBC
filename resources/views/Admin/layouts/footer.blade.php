@@ -8,9 +8,10 @@
 {{-- <script src="{{ asset('Dashboard/assets/js/plugins/bootstrap-notify.js')}}"></script> --}}
 <script src="{{ asset('Dashboard/assets/js/light-bootstrap-dashboard.js?v=2.0.0 ')}}" type="text/javascript"></script>
 <script src="{{ asset('Dashboard/assets/js/demo.js')}}"></script>
-{{-- <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{{-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script> --}}
+
 <script src="{{asset('js/main.js')}}"></script>
 @stack('custom-scripts')
 </html>

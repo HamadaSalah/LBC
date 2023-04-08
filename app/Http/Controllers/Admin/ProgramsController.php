@@ -16,7 +16,7 @@ class ProgramsController extends Controller
     public function index()
     {
         $cats = Program::all();
-        return view('Admin.Programs.index', compact('cats'));
+        return view('Admin.programs.index', compact('cats'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProgramsController extends Controller
      */
     public function create()
     {
-        return view('Admin.Programs.create');
+        return view('Admin.programs.create');
     }
 
     /**

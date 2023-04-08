@@ -3,43 +3,33 @@
 <h2 style="padding-bottom: 35px;float: left;">Edit Slider </h2>
 
 <div class="clearfix"></div>
-
-<form method="POST" action="{{route('admin.slider.update', $slider->id)}}" enctype="multipart/form-data">
+<form action="{{route('admin.video.update', $video)}}" enctype="multipart/form-data" method="POST">
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="img">IMG</label>
-        <img src="{{asset($slider->img)}}" alt="" style="width: 100px;height: 100px;display: block;margin-bottom: 20px;border-radius: 5px">
-        <input type="file" class="form-control" id="img" name="img"  placeholder="Write Body..">
+        <label for="role">اختر البرنامج</label>
+        <select class="form-control" id="role" required name="program_id" required>
+            @foreach ($programs as $program)
+                <option value="{{$program->id}}" <?php if($program->id == $video->program->id) echo 'selected'; ?>>{{$program->name}}</option>
+            @endforeach
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="title">الاسم</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{$video->title}}" required >
     </div>
     <div class="form-group">
-        <label for="name">Head</label>
-        @foreach ($slider->head as $item)
-        <input type="name" class="form-control mb-3" id="name" name="head[]"  placeholder="Write Head.." value="{{$item}}">
-            
-        @endforeach
+        <label for="img">الصورة</label> <img src="{{asset($video->img)}}" style="width: 100px" alt="">
+        <input type="file" class="form-control" id="img" name="img" >
     </div>
-    <div id='input-cont'>
-        <!--Input container-->
+     
+    <div class="form-group">
+        <label for="video">الفيديو</label>
+        <input type="file" class="form-control" id="video" name="video" >
     </div>
-    <button onclick='addInput()' style="float: right" type="button" class="btn btn-success">+ Add New head</button>
-
-    <script>
-        const container = document.getElementById('input-cont');
-
-        // Call addInput() function on button click
-        function addInput(){
-            let input = document.createElement('textarea');
-            input.placeholder = 'Type something';
-            input.className = 'form-control mb-2';
-            input.name = 'head[]';
-            container.appendChild(input);
-        }
-    </script>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+     
+    <button type="submit" class="btn btn-primary">حفظ</button>
   </form>
-
 @push("custom-css")
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
