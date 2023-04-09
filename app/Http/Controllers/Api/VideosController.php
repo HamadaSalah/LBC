@@ -17,7 +17,7 @@ class VideosController extends Controller
     public function index(Request $request)
     {
         if ($request->id) {
-            return response()->json(Video::with('program')->where('program_id', $request->id)->latest()->get(), 200);
+            return response()->json(Video::with('program')->where('program_id', $request->id)->get(), 200);
         }
         return response()->json(Video::with('program')->get(), 200);
     }
