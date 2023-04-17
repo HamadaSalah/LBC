@@ -17,7 +17,7 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         if ($request->id) {
-            return response()->json(News::with('category')->where('news_category_id', $request->id)->get(), 200);
+            return response()->json(News::with('category')->where('news_category_id', $request->id)->latest()->get(), 200);
         }
         return response()->json(News::with('category')->get(), 200);
     }
