@@ -19,7 +19,7 @@ class NewsController extends Controller
         if ($request->id) {
             return response()->json(News::with('category')->where('news_category_id', $request->id)->latest()->get(), 200);
         }
-        return response()->json(News::with('category')->get(), 200);
+        return response()->json(News::with('category')->latest()->get(), 200);
     }
 
     /**
